@@ -1,0 +1,40 @@
+<div class="card border-info mb-3" >
+  <div class="card-header" style="text-align: center;">Cliente </div>
+  <div class="card-body text-info">
+    <h5 class="card-title" style="text-align: center;">Listado de Clinetes</h5>
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']" style="top: 5px;">crear cliente</button>
+    <div class="alert alert-" >
+      <div class="alert alert-success" role="alert"*ngIf="clientes?.length ==0">
+        No existen datos en la tabla 
+      </div>
+    </div>
+      <table class="table table-bordered table-striped" style="text-align: center;" *ngIf="clientes?.length>0">
+        
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Aprellido</th>
+            <th>Create AT</th>
+            <th>Email</th>
+            <th>eliminar</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let Cliente of clientes">
+            <td><button type="button" class="btn btn-rounded btn-primary" [routerLink]="['/clientes/form/', Cliente.id]">{{Cliente.id}}</button></td>
+            <td>{{Cliente.nombre}}</td>
+            <td>{{Cliente.apellido}}</td>
+            <td>{{Cliente.createAT}}</td>
+            <td>{{Cliente.email}}</td>
+            <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)" >eliminar</button></td>
+
+           
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
