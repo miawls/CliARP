@@ -19,10 +19,16 @@ export class ClientesComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    //this.clientes = CLIENTES;
-    let page = 0;
-    this.clienteService.getClientes(page).subscribe(
-      response => this.clientes = response.content as Cliente[]);
+
+    this.activatedRoute.paramMap.subscribe(params => { // agregamos un obserbable  y se inicia cada ves que lo utlizamos
+
+      let page: number = + params.get('page');
+      if(!page){
+        page = 0;
+      }
+      this.clienteService.getClientes(page).subscribe(
+        response => this.clientes = response.content as Cliente[]);
+    });
   }
   borrar(cliente: Cliente): void {
 
