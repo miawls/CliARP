@@ -5,11 +5,11 @@
     <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']" style="top: 5px;">crear cliente</button>
     <div class="alert alert-" >
       <div class="alert alert-success" role="alert"*ngIf="clientes?.length ==0">
-        No existen datos en la tabla 
+        No existen datos en la tabla
       </div>
     </div>
       <table class="table table-bordered table-striped" style="text-align: center;" *ngIf="clientes?.length>0">
-        
+
         <thead>
           <tr>
             <th>ID</th>
@@ -30,10 +30,10 @@
             <td>{{Cliente.email}}</td>
             <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)" >eliminar</button></td>
 
-           
+
 
           </tr>
-
+          <app-paginator [paginador] = "paginador"></app-paginator>
         </tbody>
       </table>
     </div>
