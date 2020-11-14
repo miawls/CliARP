@@ -18,6 +18,7 @@
             <th>Create AT</th>
             <th>Email</th>
             <th>eliminar</th>
+            <th>agregar Foto</th>
           </tr>
 
         </thead>
@@ -29,6 +30,7 @@
             <td>{{Cliente.createAT}}</td>
             <td>{{Cliente.email}}</td>
             <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)" >eliminar</button></td>
+            <td><button type="button" class="btn btn-rounded btn-info" [routerLink]="['/clientes/ver/', Cliente.id]">Agregar foto</button></td>
 
 
 

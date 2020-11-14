@@ -8,9 +8,11 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { formatDate } from '@angular/common';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class ClienteService {
   private url: string = "http://localhost:8080/api/cliente";
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -18,23 +20,23 @@ export class ClienteService {
     private router: Router) { }
 
 
-  getClientes(page:number): Observable<any> {
-    return this.http.get(this.url  +'/page/'+ page ).pipe(
+  getClientes(page: number): Observable<any> {
+    return this.http.get(this.url + '/page/' + page).pipe(
       map((response: any) => {
 
-         (response.content as Cliente[]).map((cliente: any) => {
+        (response.content as Cliente[]).map((cliente: any) => {
           cliente.nombre = cliente.nombre.toUpperCase();
           cliente.apellido = cliente.apellido.toUpperCase();
           cliente.createAT = formatDate(cliente.createAT, 'dd-MM-yyyy', 'en-US');
           return response;
         });
- console.log(response);
-         return response;
+        console.log(response);
+        return response;
 
       })
 
     );
-    //return CLIENTES;
+
   }
 
   create(cliente: Cliente): Observable<any> {  // crear el metodo de insercion
@@ -98,4 +100,19 @@ export class ClienteService {
       })
     );
   }
+
+  subirFoto(archivo: File, id) {
+    let formData = new FormData();
+    formData.append("archivo", archivo); //nombre que se le dio en el requesmaping
+    formData.append("id", id); //nombre del parametro que resive
+    return this.http.post(`${this.url}/upload/`, formData).pipe(
+      map((response: any) => response.cliente as Cliente),
+      catchError(e => {
+        console.log(e.error.mensaje);
+        Swal.fire(e.error.mensaje, e.error.error, 'error');
+        return throwError(e);
+      })
+    )
+  }
+
 }

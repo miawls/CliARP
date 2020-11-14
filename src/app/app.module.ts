@@ -9,6 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormComponent } from './clientes/form.component'; //agrega la coeccion a api
 import {FormsModule} from '@angular/forms';
 import { PaginatorComponent } from './paginator/paginator.component';
+import { DetalleClienteComponent } from './detalle-cliente/detalle-cliente.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PaginatorComponent } from './paginator/paginator.component';
     AppComponent,
     ClientesComponent,
     PaginatorComponent,
-    FormComponent
+    FormComponent,
+    DetalleClienteComponent
 
 
   ],
