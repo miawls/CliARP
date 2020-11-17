@@ -1,0 +1,41 @@
+[33mcommit ae8eb9b4e0bf97229c11988c3903c21b0185fc46[m[33m ([m[1;36mHEAD -> [m[1;32mSubidaDocumentos[m[33m)[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Fri Nov 13 22:32:39 2020 -0600
+
+    Se agrego el metodo de subir foto en en clienteServidor y agregamos una nueva componente para poder subr la foto
+
+[33mcommit f82fed2eb21aad2f92a57babef6aa2ee3b5cfeab[m[33m ([m[1;32mmaster[m[33m)[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Mon Nov 9 12:55:56 2020 -0600
+
+    Se agrego en el paginador una estructura para que el registro cambie segun el numero de hojas
+
+[33mcommit c5f60d70a2c70caeaa00e36232df824d33d9ad8b[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Fri Nov 6 17:44:56 2020 -0600
+
+    se agrego los botones de paginacion , atras ,adelante , ultima y primera
+
+[33mcommit 77799be4232cff974111db06820bb52c5777ccf1[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Thu Nov 5 13:41:39 2020 -0600
+
+    SE agrego en la seccion de paginacion el link para poder  navegar en las paginas  mostrando el resultado de cada consulta
+
+[33mcommit 62415f5e9a99f92def191450ae55bdc4060c86ab[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Thu Nov 5 13:19:28 2020 -0600
+
+    se adjunto los parametros de la paginas totales para generar el la paginacion mostrando el total de paginas y el numero de paginas
+
+[33mcommit 9a03b5fb0296060aa72bd4500ad18fa84323d9ee[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Thu Nov 5 11:25:41 2020 -0600
+
+    Estes el segundo commit el cambio que se agrego fue agregar el page con ruta para que lo resiva como parametro con el activateRouter
+
+[33mcommit 04e2a2b540acf826a7cf4470a85890b34fa56c18[m
+Author: mia <saulperez.sistemas@gmail.com>
+Date:   Wed Nov 4 12:55:29 2020 -0600
+
+    Primer comit de archivo angular  se modifico la consulta que se hace del back agregando un respong  y agregando el contendio de cada parametro casteando cada dato para su procesamiento

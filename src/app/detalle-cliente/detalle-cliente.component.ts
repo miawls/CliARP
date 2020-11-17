@@ -34,14 +34,21 @@ export class DetalleClienteComponent implements OnInit {
   seleccionarFoto(event) {
     this.fotoSeleccionada = event.target.files[0];
     console.log(this.fotoSeleccionada);
+    if (this.fotoSeleccionada.type.indexOf("image") <0) {
+      swal.fire('Error ', `El tipo de archivo no es el correcto`, 'error');
+    }
   }
 
   subirFoto() {
-    this.clienteService.subirFoto(this.fotoSeleccionada, this.Cliente.id).subscribe(cliente => {
+    if (!this.fotoSeleccionada) {
+      swal.fire('Error ', `Se debe seleccionar una imagen `, 'error');
+    } else {
+      this.clienteService.subirFoto(this.fotoSeleccionada, this.Cliente.id).subscribe(cliente => {
 
-      this.Cliente = cliente;
-      this.Router.navigate(['/clientes'])
-      swal.fire('La foto ', ` <strong> ${this.Cliente.foto} </strong> se a subido con existo`, 'success');
-    });
+        this.Cliente = cliente;
+        this.Router.navigate(['/clientes'])
+        swal.fire('La foto ', ` <strong> ${this.Cliente.foto} </strong> se a subido con existo`, 'success');
+      });
+    }
   }
 }
