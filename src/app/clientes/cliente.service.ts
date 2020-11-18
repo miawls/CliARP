@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { Injectable } from '@angular/core';
 import { Cliente } from './cliente';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs'; // una sola importacion
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { formatDate } from '@angular/common';
 
 export class ClienteService {
   private url: string = "http://localhost:8080/api/cliente";
+  private reportProgress;
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient,
     private router: Router) { }
@@ -100,18 +101,27 @@ export class ClienteService {
     );
   }
 
-  subirFoto(archivo: File, id) {
+  subirFoto(archivo: File, id):Observable<HttpEvent<{}>> {
+
     let formData = new FormData();
     formData.append("archivo", archivo); //nombre que se le dio en el requesmaping
     formData.append("id", id); //nombre del parametro que resive
-    return this.http.post(`${this.url}/upload/`, formData).pipe(
-      map((response: any) => response.cliente as Cliente),
-      catchError(e => {
-        console.log(e.error.mensaje);
-        Swal.fire(e.error.mensaje, e.error.error, 'error');
-        return throwError(e);
-      })
-    )
+
+    const req = new HttpRequest('POST', `${this.url}/upload`, formData,{ //pide con request los datos  t regresa con lo adquido agregnado el progreso de lafodo
+      reportProgress: true
+
+    });
+    console.log(req);
+    return this.http.request(req);
+
+    //return this.http.post(`${this.url}/upload/`, formData).pipe(
+      //map((response: any) => response.cliente as Cliente),
+      //catchError(e => {
+       /// console.log(e.error.mensaje);
+        //Swal.fire(e.error.mensaje, e.error.error, 'error');
+        //return throwError(e);
+      //})
+   // )
   }
 
 }

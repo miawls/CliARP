@@ -18,12 +18,16 @@
           <label class="custom-file-label" for="inputGroupFile04">Selecciona una foto</label>
         </div>
         <div class="input-group-append">
-          <button [disabled]="!fotoSeleccionada" (click)="subirFoto()" class="btn btn-outline-info" type="button" id="inputGroupFileAddon04">Subir
-            Foto</button>
+          <button [disabled]="!fotoSeleccionada" (click)="subirFoto()" class="btn btn-outline-info" type="button" id="inputGroupFileAddon04">Subir Foto</button>
+        </div>
+
+        <div *ngIf="progreso > 0" class="progress ">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" attr.aria-valuenow="{{progreso}}" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progreso + '%'}"></div>
         </div>
       </div>
+      </div>
 
-    </div>
+
      <div class="col-sm">
       <img class="img-tumbnail rounded" *ngIf="Cliente?.foto" src="http://localhost:8080/api/uploads/img/{{Cliente.foto}}" alt="{{Cliente.foto}}" style="width: 100%;">
 
