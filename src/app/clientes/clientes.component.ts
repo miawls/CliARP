@@ -4,7 +4,7 @@ import { ClienteService } from './cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 import {DetalleClienteComponent} from '../detalle-cliente/detalle-cliente.component'
-
+import {ModalService} from '../detalle-cliente/modal.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -14,11 +14,12 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[];
   cliente: Cliente;
   paginador: any;
-  seleccionarCliente: Cliente;
+  seleccionarCliente: Cliente; //Pasamos los paramotros obtenidos del cliente al detalle del cliente  y lo resibve mediante el cliente
 
   constructor(private clienteService: ClienteService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute,
+    private modalServise:ModalService) { }
 
   ngOnInit(): void {
 
@@ -68,6 +69,7 @@ export class ClientesComponent implements OnInit {
   }
 abrirModal(Cliente:Cliente){
   this.seleccionarCliente = Cliente;
+  this.modalServise.AbrirModal();
 }
 
 }
