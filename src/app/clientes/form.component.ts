@@ -13,9 +13,11 @@ export class FormComponent implements OnInit {
   cliente: Cliente = new Cliente // alta de clientes y llamar el cliente
    errores: string[];
   titulo: string = "crear cliente";
+  seleccionarCliente :Cliente;
   constructor(private clienteService: ClienteService,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }
+
 
   ngOnInit(): void {
     this.cargarCliente();
