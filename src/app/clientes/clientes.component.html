@@ -1,44 +1,48 @@
-<app-detalle-cliente *ngIf="seleccionarCliente" [Cliente]="seleccionarCliente"></app-detalle-cliente> <!-- tomar en cuenta el Cliente es refenrete al atributo cliente del DetalleCliente no el de componente acutal-->
-<div class="card border-info mb-3" >
+<app-detalle-cliente *ngIf="seleccionarCliente" [Cliente]="seleccionarCliente"></app-detalle-cliente>
+<div class="card border-info mb-3">
   <div class="card-header" style="text-align: center;">Cliente </div>
   <div class="card-body text-info">
     <h5 class="card-title" style="text-align: center;">Listado de Clinetes</h5>
-    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']" style="top: 5px;">crear cliente</button>
-    <div class="alert alert-" >
-      <div class="alert alert-success" role="alert"*ngIf="clientes?.length ==0">
+    <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/clientes/form']" style="top: 5px;">crear
+      cliente</button>
+    <div class="alert alert-">
+      <div class="alert alert-success" role="alert" *ngIf="clientes?.length ==0">
         No existen datos en la tabla
       </div>
     </div>
-      <table class="table table-bordered table-striped" style="text-align: center;" *ngIf="clientes?.length>0">
+    <table class="table table-bordered table-striped" style="text-align: center;" *ngIf="clientes?.length>0">
 
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Aprellido</th>
-            <th>Create AT</th>
-            <th>Email</th>
-            <th>eliminar</th>
-            <th>agregar Foto</th>
-          </tr>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Aprellido</th>
+          <th>Create AT</th>
+          <th>Email</th>
+          <th>Eliminar</th>
+          <th>Agregar Foto</th>
+        </tr>
 
-        </thead>
-        <tbody>
-          <tr *ngFor="let Cliente of clientes">
-            <td><button type="button" class="btn btn-rounded btn-primary" [routerLink]="['/clientes/form/', Cliente.id]">{{Cliente.id}}</button></td>
-            <!--<td><button type="button" class="btn btn-rounded btn-primary" (click)="abrirModal(Cliente)">{{Cliente.id}}</button></td>-->
-            <td>{{Cliente.nombre}}</td>
-            <td>{{Cliente.apellido}}</td>
-            <td>{{Cliente.createAT}}</td>
-            <td>{{Cliente.email}}</td>
-            <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)" >eliminar</button></td>
-            <td><button type="button" class="btn btn-rounded btn-info" (click)="abrirModal(Cliente)">Agregar foto</button></td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let Cliente of clientes">
+          <td><button type="button" class="btn btn-rounded btn-primary"
+              [routerLink]="['/clientes/form/', Cliente.id]">{{Cliente.id}}</button></td>
+          <td>{{Cliente.nombre}}</td>
+          <td>{{Cliente.apellido}}</td>
+          <td>{{Cliente.createAT}}</td>
+          <td>{{Cliente.email}}</td>
+          <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)">eliminar</button></td>
+          <td><img class="img-tumbnail rounded" *ngIf="Cliente?.foto" (click)="abrirModal(Cliente)"
+              src="http://localhost:8080/api/uploads/img/{{Cliente.foto}}" alt="{{Cliente.foto}}"
+              style="width: 64px; cursor: pointer;">
 
-
-
-          </tr>
-          <app-paginator [paginador] = "paginador"></app-paginator>
-        </tbody>
-      </table>
-    </div>
+            <img class="img-tumbnail rounded" *ngIf="!Cliente?.foto" (click)="abrirModal(Cliente)"
+              src="http://localhost:8080/images/no_usr.png" style="width: 64px; cursor: pointer;"
+              style="width: 64px; cursor: pointer;"></td>
+        </tr>
+        <app-paginator [paginador]="paginador"></app-paginator>
+      </tbody>
+    </table>
   </div>
+</div>

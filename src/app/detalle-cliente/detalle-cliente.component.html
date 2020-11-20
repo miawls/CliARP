@@ -1,11 +1,11 @@
+ <div *ngIf="modalServise.Modal" class="abrir-Modal animacion fadeIn" >
 
 
-
-<div *ngIf="modalServise.Modal" class="modal" tabindex="-1" style="display: block">
+<div  class="modal" tabindex="-1" style="display: block">
   <div class="modal-dialog modal-lg" >
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">{{Cliente.id}}-{{Cliente.nombre}}</h5>
+        <h5 class="modal-title">{{Cliente.id}}-{{Cliente.nombre}} {{Cliente.apellido}}</h5>
         <button (click)="cerrarModal();" type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -50,3 +50,4 @@
 </div>
 
 
+</div>
