@@ -3,8 +3,8 @@ import { Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
-import {DetalleClienteComponent} from '../detalle-cliente/detalle-cliente.component'
-import {ModalService} from '../detalle-cliente/modal.service';
+import { DetalleClienteComponent } from '../detalle-cliente/detalle-cliente.component'
+import { ModalService } from '../detalle-cliente/modal.service';
 @Component({
   selector: 'app-clientes',
   templateUrl: './clientes.component.html',
@@ -19,21 +19,30 @@ export class ClientesComponent implements OnInit {
   constructor(private clienteService: ClienteService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private modalServise:ModalService) { }
+    private modalServise: ModalService) { }
 
   ngOnInit(): void {
 
     this.activatedRoute.paramMap.subscribe(params => { // agregamos un obserbable  y se inicia cada ves que lo utlizamos
 
       let page: number = + params.get('page');
-      if(!page){
+      if (!page) {
         page = 0;
       }
       this.clienteService.getClientes(page).subscribe(
-        response => {this.clientes = response.content as Cliente[];
-                     this.paginador = response;
-          })
+        response => {
+          this.clientes = response.content as Cliente[];
+          this.paginador = response;
+        })
         ;
+    });
+    this.modalServise.notificarFoto.subscribe(cliente => {
+      this.clientes = this.clientes.map(clienteOriginal => { //retorna al cliente original // los maps sacaca los atributos de un arreglo no de un solo objeto
+        if (cliente.id == clienteOriginal.id) {
+          clienteOriginal.foto = cliente.foto; // asigna los nuevos parametros del mis objeto pasado con el cliente actual
+        }
+        return clienteOriginal;
+      });
     });
   }
   borrar(cliente: Cliente): void {
@@ -67,9 +76,9 @@ export class ClientesComponent implements OnInit {
 
 
   }
-abrirModal(Cliente:Cliente){
-  this.seleccionarCliente = Cliente;
-  this.modalServise.AbrirModal();
-}
+  abrirModal(Cliente: Cliente) {
+    this.seleccionarCliente = Cliente;
+    this.modalServise.AbrirModal();
+  }
 
 }

@@ -15,7 +15,7 @@ export class DetalleClienteComponent implements OnInit {
   @Input() Cliente: Cliente; //pasar los datos de la instancia por el decorador input dodne se este llamando
 
   fotoSeleccionada: File;
-   progreso: number ;
+  progreso: number;
   constructor(private clienteService: ClienteService,
     public modalServise: ModalService) { }
 
@@ -54,7 +54,7 @@ export class DetalleClienteComponent implements OnInit {
 
           this.Cliente = response.cliente as Cliente;
 
-         // console.log("datos del response" + Response);
+          this.modalServise.notificarFoto.emit(this.Cliente);
           swal.fire('La foto ', ` <strong> ${this.Cliente.foto} </strong> se a subido con existo`, 'success');
         }
         // this.Cliente = cliente;
