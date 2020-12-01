@@ -13,7 +13,7 @@ import { formatDate } from '@angular/common';
 })
 
 export class ClienteService {
-  private url: string = "http://localhost:8080/api/cliente";
+  private url: string = "http://localhost:8888/api/cliente";
   private reportProgress;
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   constructor(private http: HttpClient,
@@ -60,7 +60,7 @@ export class ClienteService {
       catchError(e => {
 
         this.router.navigate(['/clientes']);
-
+         
         Swal.fire({
           icon: 'error',
           title: 'Oops...',

@@ -2,7 +2,7 @@ import swal from 'sweetalert2';
 import { ClienteService } from './../clientes/cliente.service';
 import { Cliente } from './../clientes/cliente';
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router ,ParamMap } from '@angular/router';
 import { HttpEventType } from '@angular/common/http';
 import { ModalService } from './modal.service';
 @Component({
@@ -25,7 +25,7 @@ export class DetalleClienteComponent implements OnInit {
     //   let id: number = +params.get('id');
     //   if (id) {
     //     this.clienteService.getCliente(id).subscribe(cliente => {
-    //       this.Cliente = cliente;
+    //        this.Cliente = cliente;
     //     })
     //   }
     // }

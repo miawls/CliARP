@@ -34,7 +34,7 @@
           <td>{{Cliente.email}}</td>
           <td><button type="button" class="btn btn-rounded btn-danger" (click)="borrar(Cliente)">eliminar</button></td>
           <td><img class="img-tumbnail rounded" *ngIf="Cliente?.foto" (click)="abrirModal(Cliente)"
-              src="http://localhost:8080/api/uploads/img/{{Cliente.foto}}" alt="{{Cliente.foto}}"
+              src="http://localhost:8888/api/uploads/img/{{Cliente.foto}}" alt="{{Cliente.foto}}"
               style="width: 64px; cursor: pointer;">
 
             <img class="img-tumbnail rounded" *ngIf="!Cliente?.foto" (click)="abrirModal(Cliente)"
